@@ -3,12 +3,25 @@ import logo from "/images/logo.svg";
 import georgianLanguage from "/images/georgia-language-flag.png";
 import englishLanguage from "/images/english-language-flag.svg";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Header() {
   const [activeFlag, setActiveFlag] = useState("");
   const [mobileNav, toggleMobileNav] = useCycle(false, true);
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    async function getCountry() {
+      const res = await fetch("https://ipapi.co/json/");
+      const data = await res.json();
+      if (data.country_code === "GE") {
+        i18n.changeLanguage("ge");
+      } else {
+        i18n.changeLanguage("en");
+      }
+    }
+    getCountry();
+  }, [i18n]);
 
   const changeLang = (lng) => {
     i18n.changeLanguage(lng);
@@ -39,37 +52,37 @@ function Header() {
         <div className="hidden md:flex md:flex-nowrap  md:gap-[40px] md:w-[340px] md:overflow-x-auto lg:w-auto lg:flex text-color-primary lg:gap-[20px] xl:gap-[40px] items-center ">
           <a
             href="#about-us"
-            className="text-textColor-primary text-[16px] font-norma whitespace-nowrap"
+            className="text-textColor-primary text-[16px] font-norma whitespace-nowrap hover:text-[#613994]"
           >
             {t("aboutUs")}
           </a>
           <a
             href="#news"
-            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap"
+            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap hover:text-[#613994]"
           >
             {t("news")}
           </a>
           <a
             href="#bottle"
-            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap"
+            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap hover:text-[#613994]"
           >
             {t("bottle")}
           </a>
           <a
             href="#cocktails"
-            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap"
+            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap hover:text-[#613994]"
           >
             {t("cocktails")}
           </a>
           <a
             href="#mobile-bar"
-            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap"
+            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap hover:text-[#613994]"
           >
             {t("mobileBar")}
           </a>
           <a
             href="#contact"
-            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap"
+            className="text-textColor-primary text-[16px] font-normal whitespace-nowrap hover:text-[#613994]"
           >
             {t("contact")}
           </a>

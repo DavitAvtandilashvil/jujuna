@@ -114,12 +114,14 @@ function Footer() {
                   src={dark}
                   alt="dark"
                   onClick={() => setIsDarkMode(true)}
+                  className="cursor-pointer"
                 />
               ) : (
                 <img
                   src={light}
                   alt="light"
                   onClick={() => setIsDarkMode(false)}
+                  className="cursor-pointer"
                 />
               )}
             </div>
