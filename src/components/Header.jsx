@@ -12,12 +12,16 @@ function Header() {
 
   useEffect(() => {
     async function getCountry() {
-      const res = await fetch("https://ipapi.co/json/");
-      const data = await res.json();
-      if (data.country_code === "GE") {
-        i18n.changeLanguage("ge");
-      } else {
-        i18n.changeLanguage("en");
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        if (data.country_code === "GE") {
+          i18n.changeLanguage("ge");
+        } else {
+          i18n.changeLanguage("en");
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
     getCountry();
